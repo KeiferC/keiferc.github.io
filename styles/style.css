@@ -1,0 +1,50 @@
+/*-------------------------------------
+ * Theme
+ ------------------------------------*/
+html, body {
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+}
+
+h1 { /* Page Titles */
+        /*TODO*/
+}
+
+h2 { /* Section Headings */
+        /*TODO: Section Title*/
+}
+
+h3 { /* Sub-Section Headings */
+        /*TODO*/
+}
+
+h4 { /* Minor Headings */
+        /*TODO*/
+}
+
+p {
+        /*TODO*/
+}
+
+/*-------------------------------------
+ * Header
+ ------------------------------------*/
+/* Icon */
+
+
+/* Navigation Bar */
+#nav-bar li {
+        display: inline;
+}
+
+/*-------------------------------------
+ * Content
+ ------------------------------------*/
+
+
+/*-------------------------------------
+ * Footer
+ ------------------------------------*/
