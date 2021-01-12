@@ -1,5 +1,6 @@
 Makefile
 .ignore
+submodules
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks,node,windows,macos,linux,vim,vscode
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,jupyternotebooks,node,windows,macos,linux,vim,vscode
