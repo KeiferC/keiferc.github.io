@@ -1,0 +1,1045 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Objective 06 - [Write-up] Kringlecon 3: French Hens</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#challenge-06-splunk-challenge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="[Write-up] Kringlecon 3: French Hens" class="md-header-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            [Write-up] Kringlecon 3: French Hens
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Objective 06
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="[Write-up] Kringlecon 3: French Hens" class="md-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    [Write-up] Kringlecon 3: French Hens
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../01-uncover-santas-gift-list/" class="md-nav__link">
+      Objective 01
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../02-investigate-s3-bucket/" class="md-nav__link">
+      Objective 02
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../03-point-of-sale-password-recovery/" class="md-nav__link">
+      Objective 03
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../04-operate-the-santavator/" class="md-nav__link">
+      Objective 04
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../05-open-hid-lock/" class="md-nav__link">
+      Objective 05
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Objective 06
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Objective 06
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-questions" class="md-nav__link">
+    Training Questions
+  </a>
+  
+    <nav class="md-nav" aria-label="Training Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-01" class="md-nav__link">
+    Question 01
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-02" class="md-nav__link">
+    Question 02
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 02">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_1" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-03" class="md-nav__link">
+    Question 03
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 03">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_2" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-04" class="md-nav__link">
+    Question 04
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_3" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-05" class="md-nav__link">
+    Question 05
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 05">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_4" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-06" class="md-nav__link">
+    Question 06
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 06">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_5" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-07" class="md-nav__link">
+    Question 07
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 07">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_6" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-question" class="md-nav__link">
+    Challenge Question
+  </a>
+  
+    <nav class="md-nav" aria-label="Challenge Question">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_7" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../07-can-d-bus-problem/" class="md-nav__link">
+      Objective 07
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../08-broken-tag-generator/" class="md-nav__link">
+      Objective 08
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../09-arp-shenanigans/" class="md-nav__link">
+      Objective 09
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../10-defeat-fingerprint-sensor/" class="md-nav__link">
+      Objective 10
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/33.6kbps/" class="md-nav__link">
+      Terminal/33.6kbps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/can-bus-investigation/" class="md-nav__link">
+      Terminal/CAN Bus Investigations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/debug-redis/" class="md-nav__link">
+      Terminal/Debug Redis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/elf-code/" class="md-nav__link">
+      Terminal/Elf Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/kringle-kiosk/" class="md-nav__link">
+      Terminal/Kringle Kiosk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/scapy-prepper/" class="md-nav__link">
+      Terminal/Scapy Prepper
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/snowball-fight/" class="md-nav__link">
+      Terminal/Snowball Fight
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/sort-o-matic/" class="md-nav__link">
+      Terminal/Sort-O-Matic
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/speaker-unprep/" class="md-nav__link">
+      Terminal/Speaker Unprep
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/unescape-tmux/" class="md-nav__link">
+      Terminal/Unescape Tmux
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-questions" class="md-nav__link">
+    Training Questions
+  </a>
+  
+    <nav class="md-nav" aria-label="Training Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-01" class="md-nav__link">
+    Question 01
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-02" class="md-nav__link">
+    Question 02
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 02">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_1" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-03" class="md-nav__link">
+    Question 03
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 03">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_2" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-04" class="md-nav__link">
+    Question 04
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_3" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-05" class="md-nav__link">
+    Question 05
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 05">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_4" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-06" class="md-nav__link">
+    Question 06
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 06">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_5" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-07" class="md-nav__link">
+    Question 07
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 07">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_6" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-question" class="md-nav__link">
+    Challenge Question
+  </a>
+  
+    <nav class="md-nav" aria-label="Challenge Question">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flag_7" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="challenge-06-splunk-challenge">Challenge 06 - Splunk Challenge</h1>
+<h2 id="challenge">Challenge</h2>
+<p>The goal is to answer the KingleCastle SOC Challenge Question using Splunk</p>
+<p><img alt="screenshot of Splunk interface" src="media/splunk-interface.png" /></p>
+<h2 id="solution">Solution</h2>
+<h3 id="training-questions">Training Questions</h3>
+<h4 id="question-01">Question 01</h4>
+<p>How many distinct MITRE ATT&amp;CK techniques did Alice emulate?</p>
+<p>We can use the <code>tstats</code> command in the search interface to list the unique 
+ATT&amp;K events and count the unique ATT&amp;CK technique IDs. We can just pass the following query: <code>| tstats count where index=* by index</code></p>
+<p><img alt="screenshot of the search for unique events" src="media/q1.png" /></p>
+<h5 id="flag">Flag</h5>
+<p><code>13</code></p>
+<h4 id="question-02">Question 02</h4>
+<p>What are the names of the two indexes that contain the results of emulating Enterprise ATT&amp;CK technique 1059.003? (Put them in alphabetical order and separate them with a space)</p>
+<p>We can use the same query as that for #1, except specify the technique id: <code>| tstats count where index=T1059.003* by index</code></p>
+<p><img alt="screenshot of the q2 search results" src="media/q2.png" /></p>
+<h5 id="flag_1">Flag</h5>
+<p><code>t1059.003-main t1059.003-win</code></p>
+<h4 id="question-03">Question 03</h4>
+<p>One technique that Santa had us simulate deals with 'system information discovery'. What is the full name of the registry key that is queried to determine the MachineGuid?</p>
+<p>We first search Atomic Red Team's repo for an atomic associated with System Information Discovery.</p>
+<p><img alt="screenshot of the atomic repo SID findings" src="media/q3-1.png" /></p>
+<p>Next, we look into the Atomic's details to find the query for Windows MachineGUID Discovery.</p>
+<p><img alt="screenshot of MachineGUID Discover query" src="media/q3-2.png" /></p>
+<h5 id="flag_2">Flag</h5>
+<p><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography</code></p>
+<h4 id="question-04">Question 04</h4>
+<p>According to events recorded by the Splunk Attack Range, when was the first OSTAP related atomic test executed? (Please provide the alphanumeric UTC timestamp.)</p>
+<p>We can just search the Attack Range's events with a query for "OSTAP" and find the earliest execution time in UTC via the fields on the left sidebar.</p>
+<p><img alt="screenshot of execution times" src="media/q4.png" /></p>
+<h5 id="flag_3">Flag</h5>
+<p>2020-11-30T17:44:15Z</p>
+<h4 id="question-05">Question 05</h4>
+<p>One Atomic Red Team test executed by the Attack Range makes use of an open source package authored by frgnca on GitHub. According to Sysmon (Event Code 1) events in Splunk, what was the ProcessId associated with the first use of this component?</p>
+<p>We first look at <code>frgnca</code>'s Github account to find any repos that may be applicable.</p>
+<p><img alt="screenshot of frgnca's github account" src="media/q5-1.png" /></p>
+<p><code>AudioDeviceCmdlets</code> seems like a promising repo, as the ability to control audio devices on Windows can be used for malicious purposes. Next, we search Atomic for an ATT&amp;CK technique ID that uses device audio capture commandlets.</p>
+<p><img alt="screenshot of technique ID" src="media/q5-2.png" /></p>
+<p>Then we can send a query string to the Splunk search interface that indexes based on the identified technique id, filters using Event Code 1, searches for a keyword associated with the repo, and sorts the results in ascending order by time: <code>index=T1123* EventCode=1 | search cmdlet | sort + _time</code></p>
+<p><img alt="screenshot of query results" src="media/q5-3.png" /></p>
+<h5 id="flag_4">Flag</h5>
+<p><code>3648</code></p>
+<h4 id="question-06">Question 06</h4>
+<p>Alice ran a simulation of an attacker abusing Windows registry run keys. This technique leveraged a multi-line batch file that was also used by a few other techniques. What is the final command of this multi-line batch file used as part of this simulation?</p>
+<p>We first search Atomic for an ATT&amp;CK ID for registry run keys.</p>
+<p><img alt="screenshot of registry run keys ID" src="media/q6-1.png" /></p>
+<p>Next we query Splunk, indexing with the ID and filtering the CommandLine field for a <code>.bat</code>: <code>index=t1547.001* "CommandLine"=*.bat*</code>. Then we look for a means of finding the <code>.bat</code> source code.</p>
+<p><img alt="screenshot of query results" src="media/q6-2.png" /></p>
+<p>Since the executed command downloads the <code>.bat</code> from the following repo, we can just find the repo and scroll down to the last line for the flag.</p>
+<p><img alt="screenshot of .bat source code" src="media/q6-3.png" /></p>
+<h5 id="flag_5">Flag</h5>
+<p><code>quser</code></p>
+<h4 id="question-07">Question 07</h4>
+<p>According to x509 certificate events captured by Zeek (formerly Bro), what is the serial number of the TLS certificate assigned to the Windows domain controller in the attack range?</p>
+<p>We can just query Splunk, filtering sourcetype to bro-issued x509 certificates. We can then add a filter by finding the certificate issuer field on the left side bar, thus filtering the findings with the attack range Windows DC URI. Lastly, we can select the <code>certificate.serial</code> field on the left sidebar to get the serial number. <code>index=* sourcetype=bro:x509* "certificate.serial"=* "certificate.issuer"="CN=win-dc-748.attackrange.local"</code></p>
+<p><img alt="screenshot of query results" src="media/q7.png" /></p>
+<h5 id="flag_6">Flag</h5>
+<p><code>55FCEEBB21270D9249E86F4B9DC7AA60</code></p>
+<h3 id="challenge-question">Challenge Question</h3>
+<p>What is the name of the adversary group that Santa feared would attack
+KringleCon?</p>
+<p>After completing the training questions, we're given a base64 encoded ciphertext and two hints: (1) the encryption function is associated with RFC 7465 and (2) one of the Kringlecon talks has the encryption key.</p>
+<p><img alt="screenshot the above info" src="media/qc-1.png" /></p>
+<p>Looking up RFC 7465 suggests that we're dealing with RC4.</p>
+<p><img alt="screenshot of the RFC" src="media/qc-2.png" /></p>
+<p>Next, we can go to the talk that's directly related to this challenge and find the key "Stay Frosty".</p>
+<p><img alt="screenshot of the recorded talk" src="media/qc-3.png" /></p>
+<p>Finally, we can use cyberchef to base64 decode the given ciphertext and to pass the return value into an RC4 decoder using the "Stay Frosty" passphrase.</p>
+<p><img alt="screenshot of cyberchef" src="media/qc-4.png" /></p>
+<h4 id="flag_7">Flag</h4>
+<p><code>The Lollipop Guild</code></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../05-open-hid-lock/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Objective 05
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../07-can-d-bus-problem/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Objective 07
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

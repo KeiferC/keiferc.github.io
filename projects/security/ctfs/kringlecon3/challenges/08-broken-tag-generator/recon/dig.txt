@@ -1,0 +1,22 @@
+
+; <<>> DiG 9.16.8-Debian <<>> @8.8.8.8 https://tag-generator.kringlecastle.com/
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 2272
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 64f6b6153d9e815e894372f75ffa5658f5327366ea5d3a46 (good)
+;; QUESTION SECTION:
+;https://tag-generator.kringlecastle.com/. IN A
+
+;; AUTHORITY SECTION:
+.			133	IN	SOA	a.root-servers.net. nstld.verisign-grs.com. 2021010901 1800 900 604800 86400
+
+;; Query time: 16 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8)
+;; WHEN: Sat Jan 09 20:20:24 EST 2021
+;; MSG SIZE  rcvd: 172
+
