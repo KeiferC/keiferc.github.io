@@ -406,6 +406,26 @@
     Solution
   </a>
   
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -516,6 +536,26 @@
     Solution
   </a>
   
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -569,10 +609,9 @@ Enter your name (Please avoid special characters, they cause some weird errors).
 Press [Enter] key to continue...
 </code></pre>
 <h2 id="solution">Solution</h2>
-<ol>
-<li>Since choice 4 is the option that has sanitation issues, insert common special
-characters found in shell commands to see what the response is:</li>
-</ol>
+<h3 id="step-01">Step 01</h3>
+<p>Since choice 4 is the option that has sanitation issues, insert common special
+characters found in shell commands to see what the response is:</p>
 <pre><code class="language-bash">~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Welcome to the North Pole!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -590,12 +629,11 @@ bash: -c: line 0: syntax error near unexpected token `_-+='
 bash: -c: line 0: `/usr/games/cowsay -f /opt/reindeer.cow !@#$%^&amp;*()_-+='
 Press [Enter] key to continue...     
 </code></pre>
-<ol>
-<li>It appears as though the interface fails to escape parantheses, uses bash,
+<h3 id="step-02">Step 02</h3>
+<p>It appears as though the interface fails to escape parantheses, uses bash,
 and is running the command <code>/usr/games/cowsay -f /opt/reindeer.cow [string]</code>.
 Therefore, we can run a bash shell with a command injection that calls
-<code>/bin/bash</code> after completing the <code>cowsay</code> command:</li>
-</ol>
+<code>/bin/bash</code> after completing the <code>cowsay</code> command:</p>
 <pre><code class="language-bash">~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Welcome to the North Pole!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

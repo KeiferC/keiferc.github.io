@@ -447,6 +447,47 @@
     Snowball Fight Name Generation
   </a>
   
+    <nav class="md-nav" aria-label="Snowball Fight Name Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-03" class="md-nav__link">
+    Step 03
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-04" class="md-nav__link">
+    Step 04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-05" class="md-nav__link">
+    Step 05
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -551,6 +592,47 @@
     Snowball Fight Name Generation
   </a>
   
+    <nav class="md-nav" aria-label="Snowball Fight Name Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-03" class="md-nav__link">
+    Step 03
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-04" class="md-nav__link">
+    Step 04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-05" class="md-nav__link">
+    Step 05
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -593,9 +675,8 @@
 </li>
 </ul>
 <h3 id="snowball-fight-name-generation">Snowball Fight Name Generation</h3>
-<ol>
-<li>Let's first figure out what kinds of names the game generates by starting the Hard level a bunch of times.</li>
-</ol>
+<h4 id="step-01">Step 01</h4>
+<p>Let's first figure out what kinds of names the game generates by starting the Hard level a bunch of times.</p>
 <pre><code>1597741866
 751787933
 3645162962
@@ -613,9 +694,8 @@
 708630780
 </code></pre>
 <p>So far, with this small sample size, it appears that the name generator is returning unsigned 32-bit integers. We can assume so since there are no 10-digit return values greater than 2^32 - 1.</p>
-<ol>
-<li>Now we can use a mt19937 predictor tool, but I don't feel like clicking the game's interface 624 times to gather enough numbers to untemper for cloning. Assuming that the kringlecon creators don't require us to do so as well, there's probably a vulnerability in the game that let's us find the hundreds of discarded generated numbers when playing on Impossible.</li>
-</ol>
+<h4 id="step-02">Step 02</h4>
+<p>Now we can use a mt19937 predictor tool, but I don't feel like clicking the game's interface 624 times to gather enough numbers to untemper for cloning. Assuming that the kringlecon creators don't require us to do so as well, there's probably a vulnerability in the game that let's us find the hundreds of discarded generated numbers when playing on Impossible.</p>
 <p>Entering an Impossible level returns</p>
 <ul>
 <li><code>POST</code> request to https://snowball2.kringlecastle.com/game with payload: <code>difficulty=3&amp;playerID=003480ec-4a4b-4e50-8943-c73ae664c6f9</code></li>
@@ -626,15 +706,13 @@
 <p>The <code>POST</code> response payload contains a comment of the attempted seeds. </p>
 <p><img alt="screenshot of POST response payload" src="media/payload.png" /></p>
 <p>Therefore, we can use the keep <code>POST</code>ing with <code>difficulty=3&amp;playerID=[generated_id_here]</code> until we get 624 numbers to untemper for cloning mt19937.</p>
-<ol>
-<li>Conveniently, the <code>POST</code> request payload contains exactly 624 numbers. So we can just save the numbers into a file to use for cloning the Mersenne twister state array.</li>
-</ol>
+<h4 id="step-03">Step 03</h4>
+<p>Conveniently, the <code>POST</code> request payload contains exactly 624 numbers. So we can just save the numbers into a file to use for cloning the Mersenne twister state array.</p>
 <pre><code class="language-bash">root@kali:~/kringlecon20/challenges/snowball-fight/code# wc nums.txt
      624     624    6723 nums.txt
 </code></pre>
-<ol>
-<li>Now let's use the <code>mersenne-twister-predictor</code></li>
-</ol>
+<h4 id="step-04">Step 04</h4>
+<p>Now let's use the <code>mersenne-twister-predictor</code></p>
 <pre><code class="language-bash">root@kali:~/kringlecon20/challenges/snowball-fight/code# python3 -m venv venv
 root@kali:~/kringlecon20/challenges/snowball-fight/code# source venv/bin/activate
 root@kali:~/kringlecon20/challenges/snowball-fight/code# pip install mersenne-twister-predictor
@@ -658,9 +736,8 @@ print(predictor.getrandbits(32))
 <pre><code class="language-bash">root@kali:~/kringlecon20/challenges/snowball-fight/code# python nextnum.py
 3135941721
 </code></pre>
-<ol>
-<li>Inserting the generated number into the username field for the Easy instance of the game generates an identical board. We can then just use the Easy instance to find all the right coordinates to select for the Impossible instance</li>
-</ol>
+<h4 id="step-05">Step 05</h4>
+<p>Inserting the generated number into the username field for the Easy instance of the game generates an identical board. We can then just use the Easy instance to find all the right coordinates to select for the Impossible instance</p>
 <p>Easy instance:
 <img alt="screenshot of the easy instance" src="media/easy.png" /></p>
 <p>Impossible instance:
