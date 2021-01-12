@@ -1,1 +1,0 @@
-ping: https://tag-generator.kringlecastle.com/: Name or service not known
