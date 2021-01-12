@@ -1,0 +1,942 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Objective 07 - [Write-up] Kringlecon 3: French Hens</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#challenge-07-solve-the-sleighs-can-d-bus-problem" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="[Write-up] Kringlecon 3: French Hens" class="md-header-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            [Write-up] Kringlecon 3: French Hens
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Objective 07
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="[Write-up] Kringlecon 3: French Hens" class="md-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    [Write-up] Kringlecon 3: French Hens
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../01-uncover-santas-gift-list/" class="md-nav__link">
+      Objective 01
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../02-investigate-s3-bucket/" class="md-nav__link">
+      Objective 02
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../03-point-of-sale-password-recovery/" class="md-nav__link">
+      Objective 03
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../04-operate-the-santavator/" class="md-nav__link">
+      Objective 04
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../05-open-hid-lock/" class="md-nav__link">
+      Objective 05
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../06-splunk-challenge/" class="md-nav__link">
+      Objective 06
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Objective 07
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Objective 07
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idling" class="md-nav__link">
+    Idling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-stop" class="md-nav__link">
+    Start + Stop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock-unlock" class="md-nav__link">
+    Lock + Unlock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accelerate-brake" class="md-nav__link">
+    Accelerate + Brake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steering" class="md-nav__link">
+    Steering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accelerate-on-start" class="md-nav__link">
+    Accelerate (on start)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accelerate-brake-on-start" class="md-nav__link">
+    Accelerate + Brake (on start)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    Findings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../08-broken-tag-generator/" class="md-nav__link">
+      Objective 08
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../09-arp-shenanigans/" class="md-nav__link">
+      Objective 09
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../10-defeat-fingerprint-sensor/" class="md-nav__link">
+      Objective 10
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/33.6kbps/" class="md-nav__link">
+      Terminal/33.6kbps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/can-bus-investigation/" class="md-nav__link">
+      Terminal/CAN Bus Investigations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/debug-redis/" class="md-nav__link">
+      Terminal/Debug Redis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/elf-code/" class="md-nav__link">
+      Terminal/Elf Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/kringle-kiosk/" class="md-nav__link">
+      Terminal/Kringle Kiosk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/scapy-prepper/" class="md-nav__link">
+      Terminal/Scapy Prepper
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/snowball-fight/" class="md-nav__link">
+      Terminal/Snowball Fight
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/sort-o-matic/" class="md-nav__link">
+      Terminal/Sort-O-Matic
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/speaker-unprep/" class="md-nav__link">
+      Terminal/Speaker Unprep
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/unescape-tmux/" class="md-nav__link">
+      Terminal/Unescape Tmux
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idling" class="md-nav__link">
+    Idling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-stop" class="md-nav__link">
+    Start + Stop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock-unlock" class="md-nav__link">
+    Lock + Unlock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accelerate-brake" class="md-nav__link">
+    Accelerate + Brake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steering" class="md-nav__link">
+    Steering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accelerate-on-start" class="md-nav__link">
+    Accelerate (on start)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accelerate-brake-on-start" class="md-nav__link">
+    Accelerate + Brake (on start)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    Findings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="challenge-07-solve-the-sleighs-can-d-bus-problem">Challenge 07 - Solve the Sleigh's CAN-D-BUS Problem</h1>
+<h2 id="challenge">Challenge</h2>
+<pre><code>Difficulty: 3/5
+
+Jack Frost is somehow inserting malicious messages onto the sleigh's CAN-D bus. We need you to exclude the malicious messages and no others to fix the sleigh. Visit the NetWars room on the roof and talk to Wunorse Openslae for hints.
+</code></pre>
+<p><img alt="screenshot of can-d-bus interface" src="media/interface.png" /></p>
+<h2 id="solution">Solution</h2>
+<h3 id="testing">Testing</h3>
+<h4 id="idling">Idling</h4>
+<pre><code>244# 00 00 00 00 00
+080# 00 00 00
+019# 00 00 00 00
+188# 00 00 00 00
+[REPEATS (244 &gt; 080 &gt; 019 &gt; 188 &gt; 244 &gt; 080 &gt; ...)]
+</code></pre>
+<p>After excluding the 4 messages above, we get the slower message:</p>
+<pre><code>19B#0000000F2057
+</code></pre>
+<p>with period determined with:</p>
+<pre><code>EPOCH TIME
+1610222200525
+1610222203596
+1610222208511
+</code></pre>
+<p>Therefore, period = ~4 seconds.</p>
+<h4 id="start-stop">Start + Stop</h4>
+<p><em>Start + RPM increase</em></p>
+<pre><code>02A# 00 FF 00
+244# 00 00 00 05 3D
+244# 00 00 00 04 0C
+244# 00 00 00 03 EF
+244# 00 00 00 03 E4
+244# 00 00 00 03 E9
+244# 00 00 00 03 E7
+244# 00 00 00 03 EF
+244# 00 00 00 03 E3
+244# 00 00 00 03 DE
+244# 00 00 00 03 DE
+244# 00 00 00 03 EA
+244# 00 00 00 03 E1
+244# 00 00 00 03 E3
+</code></pre>
+<p><em>Stop</em></p>
+<pre><code>02A# 00 00 FF
+</code></pre>
+<h4 id="lock-unlock">Lock + Unlock</h4>
+<p><em>Lock</em></p>
+<pre><code>19B# 00 00 00 00 00 00
+</code></pre>
+<p><em>Unlock</em></p>
+<pre><code>19B# 00 00 0F 00 00 00
+</code></pre>
+<h4 id="accelerate-brake">Accelerate + Brake</h4>
+<p><em>Accelerator (on stop)</em></p>
+<pre><code>[no response]
+</code></pre>
+<p><em>Brake: 35 (on stop)</em></p>
+<pre><code>080# 00 00 23
+080# FF FF FA
+080# 00 00 23
+080# FF FF FD
+080# 00 00 23
+080# FF FF FA
+[repeats (00 00 23 &gt; FF FF F_)]
+</code></pre>
+<p><em>Brake: 100 (on stop)</em></p>
+<pre><code>[repeats (00 00 64 &gt; FF FF F_)]
+</code></pre>
+<h4 id="steering">Steering</h4>
+<p><em>Steering: 50 (right) (on stop)</em></p>
+<pre><code>019# 00 00 00 31
+019# 00 00 00 32
+019# 00 00 00 31
+019# 00 00 00 33
+[repeats (00 00 00 3_)]
+</code></pre>
+<p><em>Steering: 10 (right) (on stop)</em></p>
+<pre><code>019# 00 00 00 09
+019# 00 00 00 0A
+019# 00 00 00 0A
+019# 00 00 00 09
+[repeats (00 00 00 0[9|A])]
+</code></pre>
+<p><em>Steering: 1 (right) (on stop)</em></p>
+<pre><code>[repeats (00 00 00 01)]
+</code></pre>
+<p><em>Steering: -50 (left) (on stop)</em></p>
+<pre><code>019# FF FF FF CE
+019# FF FF FF CE
+019# FF FF FF CF
+019# FF FF FF D0
+019# FF FF FF CD
+[repeats (FF FF FF [C|D]_)]
+</code></pre>
+<p><em>Steering: -10 (left) (on stop)</em></p>
+<pre><code>019# FF FF FF F7
+019# FF FF FF F7
+019# FF FF FF F6
+[repeats (FF FF FF F[6|7])
+</code></pre>
+<p><em>Steering: -1 (left) (on stop)</em></p>
+<pre><code>[repeats (FF FF FF FF)
+</code></pre>
+<h4 id="accelerate-on-start">Accelerate (on start)</h4>
+<p><em>Accelerate: 1 (on start)</em></p>
+<pre><code>244# 00 00 00 04 32
+244# 00 00 00 04 3F
+[repeats (00 00 00 04 3_)]
+</code></pre>
+<p><em>Accelerate: 10 (on start)</em></p>
+<pre><code>244# 00 00 00 07 04
+244# 00 00 00 07 0E
+[repeats (00 00 00 07 0_)]
+</code></pre>
+<p><em>Accelerate: 100 (on start)</em></p>
+<pre><code>244# 00 00 00 23 60
+244# 00 00 00 22 F0
+[(repeats (00 00 00 2[2|3] __))]
+</code></pre>
+<h4 id="accelerate-brake-on-start">Accelerate + Brake (on start)</h4>
+<p><em>Accelerate: 10, Brake: 100 (on start)</em></p>
+<pre><code>244# 00 00 00 07 __
+080# 00 00 64
+080# FF FF F_
+[(repeats the above)]
+</code></pre>
+<p><img alt="screenshot of accelerate + brake" src="media/acc-br.png" /></p>
+<p>Doesn't appear that the brakes work. Speed doesn't decrease.</p>
+<h3 id="findings">Findings</h3>
+<pre><code>---- Start + Stop ----
+02A# 00 FF 00 -- start
+02A# 00 00 FF -- stop
+
+---- Lock + Unlock ----
+19B# 00 00 00 00 00 00 -- lock
+19B# 00 00 0F 00 00 00 -- unlock
+
+---- Braking ----
+080# 00 00 __ (00 &lt; __ &lt;= 64, increases as braking increases)
+080# FF FF F_
+
+---- Accelerating ----
+244# 00 00 00 __ __ (00 00 &lt; __ __ &lt;= 23 FF, increases as accelerating increases)
+
+---- Steering ----
+019# 00 00 00 __ (01 &lt;= __ &lt;= 33, increases with degree) -- steering right
+019# FF FF FF __ (FF &lt;= __ &lt;= CD, decreases with degree) -- steering left
+
+---- Unknown ----
+19B# 00 00 00 0F 20 57
+</code></pre>
+<p>It appears that the problem is that the braking doesn't work -- likely due to
+the <code>080# FF FF F_</code> messages the follows every <code>080# 00 00 __</code> message. This
+message appears to be the result of the unknown message <code>19B# 00 00 00 0F 20
+57</code>, which suggests a third operation in the Lock + Unlock group that is not
+lock nor unlock.</p>
+<h3 id="flags">Flags</h3>
+<pre><code>ID  | Operator | Criterion
+----------------------------------
+19B | Equals   | 00 00 00 0F 20 57
+080 | Contains | FF FF F
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../06-splunk-challenge/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Objective 06
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../08-broken-tag-generator/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Objective 08
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

