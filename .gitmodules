@@ -1,6 +1,3 @@
 [submodule "www/submodules/kringlecon3"]
 	path = www/submodules/kringlecon3
 	url = git@github.com:keiferc/kringlecon3.git
-[submodule "www/submodules/--force"]
-	path = www/submodules/--force
-	url = git@github.com:keiferc/kringlecon3.git
