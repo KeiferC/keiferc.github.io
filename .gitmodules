@@ -1,0 +1,3 @@
+[submodule "www/projects/security/kringlecon20"]
+	path = www/projects/security/kringlecon20
+	url = git@github.com:keiferc/kringlecon20.git
